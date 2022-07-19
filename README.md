@@ -7,7 +7,7 @@
 - Run unit tests: `npm run test`
 - Start server: `npm run start`
 
-#### Endpoint
+### Endpoint
 
 http://localhost:3000/
 
@@ -32,7 +32,7 @@ Displays image in original size
 http://localhost:3000/filename=eyes&width=800&height=800
 Creates a thumbnail with provided size, stores and returns it
 
-#### Notes
+### Notes
 
 Images are contained inside assets/images.
 Images are of type jpg.
