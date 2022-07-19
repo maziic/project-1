@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   const width: string = req.query.width as string;
   const height: string = req.query.height as string;
 
-  if (!name || !width || !height) {
+  if (!name) {
     return res.json({
       message:
         "HELLO! Please add the image's name, width and height as query parameters"
@@ -30,8 +30,10 @@ router.get('/', async (req, res) => {
 
   // create thumbnail for image
   if (fs.existsSync(imagePath)) {
-    await reSizeImage(imagePath, +width, +height, targetPath);
-    res.sendFile(targetPath);
+    if (width && height) {
+      await reSizeImage(imagePath, +width, +height, targetPath);
+      res.sendFile(targetPath);
+    } else res.sendFile(imagePath);
     // return error if image does not exist
   } else res.status(404).json({ error: 'image not found' });
 });
