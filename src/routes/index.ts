@@ -5,7 +5,7 @@ import { reSizeImage } from '../services/image';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req: express.Request, res: express.Response) => {
   // retreive query params
   const name: string = req.query.name as string;
   const width: string = req.query.width as string;
@@ -18,11 +18,18 @@ router.get('/', async (req, res) => {
     });
   }
 
+  // const imagePath = path.resolve(
+  //   `D:\\Udacity\\project_1\\assets\\images\\${name}.jpg`
+  // );
   const imagePath = path.resolve(
-    `D:\\Udacity\\project 1\\assets\\images\\${name}.jpg`
+    __dirname,
+    `../../`,
+    `assets\\images\\${name}.jpg`
   );
   const targetPath = path.resolve(
-    `D:\\Udacity\\project 1\\assets\\images\\${name}_${width}_${height}.jpg`
+    __dirname,
+    `../../`,
+    `assets\\images\\${name}_${width}_${height}.jpg`
   );
 
   // check if thumbnail already exists
@@ -31,6 +38,9 @@ router.get('/', async (req, res) => {
   // create thumbnail for image
   if (fs.existsSync(imagePath)) {
     if (width && height) {
+      if (isNaN(+width) || isNaN(+height)) {
+        res.json({ error: 'Enter valid Numbers' });
+      }
       await reSizeImage(imagePath, +width, +height, targetPath);
       res.sendFile(targetPath);
     } else res.sendFile(imagePath);
