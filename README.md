@@ -24,12 +24,12 @@ Displays a welcome message with instructions to create thumbnail
 
 #### Example 2
 
-http://localhost:3000/filename=eyes
+http://localhost:3000/?name=eyes
 Displays image in original size
 
 #### Example 3
 
-http://localhost:3000/filename=eyes&width=800&height=800
+http://localhost:3000/?name=eyes&width=800&height=800
 Creates a thumbnail with provided size, stores and returns it
 
 ### Notes
