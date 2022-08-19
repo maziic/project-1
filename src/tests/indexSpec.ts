@@ -26,7 +26,7 @@ describe('Test endpoint', (): void => {
         '/?name=fake-eyes&widthh=200&height=200'
       );
 
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(404);
     });
 
     it('gets resized image', async (): Promise<void> => {
